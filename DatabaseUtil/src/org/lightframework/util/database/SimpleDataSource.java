@@ -9,6 +9,11 @@ import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
+/** Simple Datasource connecting to database with simple jdbc settings
+ * 
+ * @author Jeonghoon Lee
+ *
+ */
 public class SimpleDataSource implements DataSource {
 	private String drivername = null;
 	private String url = null;
@@ -51,6 +56,9 @@ public class SimpleDataSource implements DataSource {
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see javax.sql.DataSource#getConnection()
+	 */
 	public Connection getConnection() throws SQLException {
 		if (connection == null) {
 			try {
@@ -62,6 +70,9 @@ public class SimpleDataSource implements DataSource {
 		return connection;	
 	}
 
+	/* (non-Javadoc)
+	 * @see javax.sql.DataSource#getConnection(java.lang.String, java.lang.String)
+	 */
 	public Connection getConnection(String username, String password) throws SQLException {
 		if (connection != null) {
 			connection.close();
@@ -76,16 +87,35 @@ public class SimpleDataSource implements DataSource {
 		return connection;
 	}
 
-	public void setDriverName(String drivername) throws ClassNotFoundException {
+	/**
+	 * @return JDBC Driver name string
+	 */
+	public String getDrivername() {
+		return this.drivername;
+	}
+	
+	public void setDrivername(String drivername) {
 		this.drivername = drivername;
+	}
+	
+	public String getUrl() {
+		return this.url;
 	}
 	
 	public void setUrl(String url) {
 		this.url = url;
 	}
 	
+	public String getUsername() {
+		return this.username;
+	}
+	
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	
+	public String getPassword() {
+		return this.password;
 	}
 	
 	public void setPassword(String password) {
