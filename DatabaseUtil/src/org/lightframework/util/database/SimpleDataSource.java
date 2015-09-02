@@ -60,7 +60,7 @@ public class SimpleDataSource implements DataSource {
 	 * @see javax.sql.DataSource#getConnection()
 	 */
 	public Connection getConnection() throws SQLException {
-		if (connection == null) {
+		if (connection == null || connection.isClosed()) {
 			try {
 				makeConnection();
 			} catch (ClassNotFoundException e) {
@@ -74,7 +74,7 @@ public class SimpleDataSource implements DataSource {
 	 * @see javax.sql.DataSource#getConnection(java.lang.String, java.lang.String)
 	 */
 	public Connection getConnection(String username, String password) throws SQLException {
-		if (connection != null) {
+		if (connection != null && !connection.isClosed()) {
 			connection.close();
 			connection = null;
 		}
