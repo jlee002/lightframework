@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/home/jhlee/bin/jdk1.8.0_60/db/lib/derby.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/DatabaseUtil"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/TestUtil"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ContextUtil"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
