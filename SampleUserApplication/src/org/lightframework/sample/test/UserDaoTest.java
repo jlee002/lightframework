@@ -10,7 +10,7 @@ import org.lightframework.sample.dao.UserDao;
 import org.lightframework.sample.domain.User;
 import org.lightframework.test.annotation.Before;
 import org.lightframework.test.annotation.Test;
-import org.lightframework.test.runner.TestUnit;
+import org.lightframework.test.runner.TestRunner;
 
 public class UserDaoTest {
 	private UserDao dao;
@@ -71,6 +71,6 @@ public class UserDaoTest {
 	*/
 	
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-		TestUnit.main(UserDaoTest.class.getName());
+		TestRunner.main(UserDaoTest.class.getName());
 	}
 }

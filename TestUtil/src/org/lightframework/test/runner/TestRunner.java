@@ -8,16 +8,34 @@ import java.util.List;
 import org.lightframework.test.annotation.After;
 import org.lightframework.test.annotation.Before;
 import org.lightframework.test.annotation.Test;
+import org.lightframework.test.exception.DefaultExpectedThrowable;
 
-public class TestUnit {
-	public static void main(String classname) {
+public class TestRunner {
+	private static String[] classnames;
+	
+	public static void main(String... args) {
+		classnames = args;
 		Class<?> clazz = null;
-		try {
-			clazz = Class.forName(classname);
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException(e);
-		}
 		
+		for (String classname: classnames) {
+			try {
+				clazz = Class.forName(classname);
+				runTest(clazz);
+			} catch (ClassNotFoundException e) {
+				throw new RuntimeException(e);
+			}
+		}
+	}
+	
+	public static TestResult run(Class<?>... classes) {
+		for (Class<?> clazz: classes) {
+			runTest(clazz);
+		}
+		return null;
+		
+	}
+	
+	private static void runTest(Class<?> clazz) {
 		Method[] methods = clazz.getDeclaredMethods();
 		
 		List<Method> testMethods = new ArrayList<Method>();
@@ -50,7 +68,27 @@ public class TestUnit {
 				if (beforeMethod != null) {
 					beforeMethod.invoke(object);
 				}
-				method.invoke(object);
+				
+				Test test = method.getAnnotation(Test.class);
+				
+				Throwable cause = null;
+				try {
+					method.invoke(object);
+				} catch (Throwable t) {
+					cause = t.getCause();
+				}
+				
+				if (cause == null && test.expected() != DefaultExpectedThrowable.class) {
+					System.out.println("Exception should have occured");
+					// Exception should have occurred
+				} else if (cause != null && !test.expected().isInstance(cause)) {
+					// Wrong exception
+					System.out.println("Wrong exception occurred");
+				} else {
+					System.out.println("Success");
+				}
+				
+				
 				if (afterMethod != null) {
 					afterMethod.invoke(object);
 				}

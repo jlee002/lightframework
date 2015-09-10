@@ -5,6 +5,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import org.lightframework.test.exception.DefaultExpectedThrowable;
+
 /**
  * @author Jeonghoon Lee
  *
@@ -12,5 +14,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface Test {
-
+	Class<? extends Throwable> expected() default DefaultExpectedThrowable.class;
 }
