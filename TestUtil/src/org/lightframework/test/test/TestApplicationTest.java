@@ -37,15 +37,16 @@ public class TestApplicationTest {
 	
 	@Test(expected=RuntimeException.class)
 	public void test11RuntimeExceptionTest() {
-		ta.test11RuntimeException();
+		ta.test51RuntimeException();
 	}
 	
 	@Test(expected=Exception.class)
 	public void test12ExceptionTest() throws Exception {
-		ta.test12Exception();
+		ta.test52Exception();
 	}
 	
 	public static void main(String[] args) throws ClassNotFoundException {
-		TestRunner.main(TestApplicationTest.class.getName());
+		//TestRunner.run(TestApplicationTest.class.getName());
+		TestRunner.run(TestApplicationTest.class);
 	}
 }

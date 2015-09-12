@@ -11,13 +11,10 @@ import org.lightframework.test.annotation.Test;
 import org.lightframework.test.exception.DefaultExpectedThrowable;
 
 public class TestRunner {
-	private static String[] classnames;
-	
-	public static void main(String... args) {
-		classnames = args;
+	public static TestResult run(String... args) {
 		Class<?> clazz = null;
 		
-		for (String classname: classnames) {
+		for (String classname: args) {
 			try {
 				clazz = Class.forName(classname);
 				runTest(clazz);
@@ -25,6 +22,7 @@ public class TestRunner {
 				throw new RuntimeException(e);
 			}
 		}
+		return null;
 	}
 	
 	public static TestResult run(Class<?>... classes) {

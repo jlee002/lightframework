@@ -71,6 +71,6 @@ public class UserDaoTest {
 	*/
 	
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-		TestRunner.main(UserDaoTest.class.getName());
+		TestRunner.run(UserDaoTest.class.getName());
 	}
 }

@@ -1,5 +1,7 @@
 package org.lightframework.test.test;
 
+import java.util.List;
+
 public class TestApplication {
 	public void test00Success() {
 		
@@ -9,11 +11,15 @@ public class TestApplication {
 		return 1;
 	}
 	
-	public void test11RuntimeException() {
+	public List test31ReturnList() {
+		return null;
+	}
+	
+	public void test51RuntimeException() {
 		throw new RuntimeException();
 	}
 	
-	public void test12Exception() throws Exception {
+	public void test52Exception() throws Exception {
 		throw new Exception();
 	}
 }
